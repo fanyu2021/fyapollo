@@ -162,6 +162,8 @@ common::Status PiecewiseJerkPathOptimizer::Process(
       double s = static_cast<double>(i) * path_boundary.delta_s() +
                  path_boundary.start_s();
       double kappa = reference_line.GetNearestReferencePoint(s).kappa();
+      
+      // fanyu: This can be understand by draw data on paper. The left range of limits should be set.
       ddl_bounds.emplace_back(-lat_acc_bound - kappa, lat_acc_bound - kappa);
     }
 

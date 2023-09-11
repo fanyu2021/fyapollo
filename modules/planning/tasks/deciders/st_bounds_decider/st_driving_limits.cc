@@ -36,10 +36,12 @@ void STDrivingLimits::Init(const double max_acc, const double max_dec,
   lower_s0_ = 0.0;
 }
 
+// 根据adc的最大动力学边界计算s的范围
 std::pair<double, double> STDrivingLimits::GetVehicleDynamicsLimits(
     const double t) const {
   std::pair<double, double> dynamic_limits;
   // Process lower bound: (constant deceleration)
+  // 以最大减速度减速到0的时间
   double dec_time = lower_v0_ / max_dec_;
   if (t - lower_t0_ < dec_time) {
     dynamic_limits.first =

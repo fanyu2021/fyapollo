@@ -1546,6 +1546,7 @@ std::vector<ObstacleEdge> PathBoundsDecider::SortObstaclesForSweepLine(
     }
     // Decompose each obstacle's rectangle into two edges: one at
     // start_s; the other at end_s.
+    // 将障碍物分解为两部分边界，一部分为前边界，一部分为后边界
     const auto obstacle_sl = obstacle->PerceptionSLBoundary();
     sorted_obstacles.emplace_back(
         1, obstacle_sl.start_s() - FLAGS_obstacle_lon_start_buffer,
@@ -1558,6 +1559,7 @@ std::vector<ObstacleEdge> PathBoundsDecider::SortObstaclesForSweepLine(
   }
 
   // Sort.
+  // 按照边界的s从小到大排列，如果s相同，则按照后边界排序
   std::sort(sorted_obstacles.begin(), sorted_obstacles.end(),
             [](const ObstacleEdge& lhs, const ObstacleEdge& rhs) {
               if (std::get<1>(lhs) != std::get<1>(rhs)) {

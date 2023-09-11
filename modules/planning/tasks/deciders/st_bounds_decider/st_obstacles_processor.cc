@@ -645,6 +645,11 @@ int STObstaclesProcessor::GetSBoundingPathPointIndex(
   }
 }
 
+// fanyu: check whether the path point is away from the obstacle.
+// return true if the path point is away from the obstacle.
+// return false if the path point is not away from the obstacle.
+// 主要通过计算向量的投影的方式进行判断
+
 bool STObstaclesProcessor::IsPathPointAwayFromObstacle(
     const PathPoint& path_point, const PathPoint& direction_point,
     const Box2d& obs_box, const double s_thresh, const bool is_before) {
